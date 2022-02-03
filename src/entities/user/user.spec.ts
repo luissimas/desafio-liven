@@ -43,6 +43,16 @@ describe('User', () => {
     expect(() => new User(data)).toThrow(InvalidFieldError)
   })
 
+  it('Should throw error on empty email', async () => {
+    const data = {
+      name: 'jorge',
+      email: '',
+      password: 'banana123',
+    }
+
+    expect(() => new User(data)).toThrow(InvalidFieldError)
+  })
+
   it('Should throw error on invalid password', async () => {
     const data = {
       name: 'jorge',
