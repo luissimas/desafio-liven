@@ -1,9 +1,8 @@
 import { Router } from 'express'
-// TODO: Import controllers
-// import {createUserController } from "./use-cases/CreateUser"
+import { createUserController } from './factories/user/create-user'
 
 const router = Router()
 
-// TODO: Add routes and middlewares
+router.post('/user', (req, res, next) => createUserController.handle(req, res, next))
 
 export { router }
