@@ -54,5 +54,7 @@ Além disso, as rotas de listagem devem permitir a especificação de filtragem 
 [[https://thewisedev.com.br/1a851f5f4c6168cd8b072ca72b4d9fe4.svg]]
 
 ** Testes
+Para o desenvolvimento, foi seguida (até certo ponto) a prática de TDD. Sendo realista, o método foi empregado principalmente na definição das entidades e dos casos de uso, o que ajudou tanto a especificar quanto a validar as funcionalidades essenciais do domínio da aplicação.
+
 ** Extras
 ** Documentação

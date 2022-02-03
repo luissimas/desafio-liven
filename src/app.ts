@@ -1,11 +1,11 @@
-import express from "express"
-import { router } from "./routes"
+import express from 'express'
+import { router } from './routes'
 
 // TODO: Error handler
 //import {handler} from "./error"
 
 // Loading dotenv config
-import "dotenv/config"
+import 'dotenv/config'
 
 const app = express()
 

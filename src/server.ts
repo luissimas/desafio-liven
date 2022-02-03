@@ -1,4 +1,4 @@
-import { app } from "./app"
+import { app } from './app'
 
 // TODO: Make this a env variable
 const port = 3333
