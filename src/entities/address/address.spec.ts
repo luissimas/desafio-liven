@@ -1,5 +1,5 @@
 import { Address } from '.'
-import { InvalidFieldError } from './errors'
+import { InvalidFieldError } from '@errors'
 
 describe('Address', () => {
   it('Should be able to instantiate address', () => {

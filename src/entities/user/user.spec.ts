@@ -1,5 +1,5 @@
-import { User } from './index'
-import { InvalidFieldError } from './errors'
+import { User } from '.'
+import { InvalidFieldError } from '@errors'
 
 describe('User', () => {
   it('Should be able to instantiate user', async () => {

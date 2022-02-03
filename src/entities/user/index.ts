@@ -1,5 +1,5 @@
 import { v4 as uuid } from 'uuid'
-import { InvalidFieldError } from './errors'
+import { InvalidFieldError } from '@errors'
 
 export class User {
   public readonly id: string

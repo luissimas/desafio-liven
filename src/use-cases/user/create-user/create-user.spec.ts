@@ -1,9 +1,8 @@
-import { User } from '../../../entities/user'
-import { InvalidFieldError } from '../../../entities/user/errors'
-import { MemoryUserRepository } from '../../../infrastructure/repositories/user/MemoryUserRepository'
-import { CreateUserUseCase } from './create-user'
+import { User } from '@entities/user'
+import { InvalidFieldError, UserAlreadyExists } from '@errors'
+import { MemoryUserRepository } from '@infrasctructure/repositories/user/memory-user-repository'
+import { CreateUserUseCase } from '.'
 import { ICreateUserDTO } from './create-user-dto'
-import { UserAlreadyExists } from './errors'
 
 const repo = new MemoryUserRepository()
 const useCase = new CreateUserUseCase(repo)
