@@ -2,9 +2,57 @@
 #+options: toc:t
 
 * Descrição
-* Requisitos
-* Rotas
-* Arquitetura
-* Testes
-* Extras
-* Documentação
+** Enunciado
+#+begin_quote
+Desenvolva uma API simples para cadastro e controle de usuários através de uma API. Deve ser criado um servidor HTTP, que expõe endpoints para acessar as funções internas.
+#+end_quote
+
+** Ferramentas
+De acordo com as indicações do treinamento, estão sendo utilizadas as seguintes ferramentas:
+
+- Git para versionamento de código
+- Yarn para gerenciamento de dependências
+- Mysql como SGBD
+- Express como framework para o servidor HTTP
+- Knex.js como query e schema builder
+- Objection.js como ORM
+
+Além dessas, algumas outras ferramentas extras estão sendo utilizadas para funcionalidades auxiliares:
+
+- Jest como base para definição e execução dos testes
+- Supertest para a execução de testes de integração
+- Fc-check para property-based testing
+- Bcrypt para criptografia de senhas
+- JOI e Celebrate para validação de requisições
+- Eslint e prettier para linting e formatação
+- uuid para gerar identificadores únicos
+- Faker.js para a geração de dados para seeds
+
+** Especificações
+O sistema lida com duas entidades: *usuários* e *endereços*, que mantém um relacionamento do tipo =1:N=, ou seja, um usuário pode ter vários endereços, mas os endereços estão relacionados à apenas um usuário.
+
+As operações requeridas são *CRUDs* para ambas as entidades:
+
+- Criação de usuários
+- Listagem de usuários e seus endereços
+- Alteração de usuários
+- Remoção de usuários
+- Criação de endereços
+- Listagem endereços do usuário
+- Alteração de endereços
+- Remoção de endereços
+
+Como especificado, as operações devem ser fornecidas através de um servidor HTTP, portanto optou-se por expor endpoints seguindo os *princípios REST* (embora a API não seja Restful!). Isso envolve o uso semântico dos verbos HTTP e a definição de *endpoints orientados a recursos*, não a operações.
+
+Além disso, as rotas de listagem devem permitir a especificação de filtragem e ordenação pelos campos das entidades.
+
+* Processo de desenvolvimento
+** Rotas
+** Arquitetura
+
+#+caption: Fonte: https://thewisedev.com.br/
+[[https://thewisedev.com.br/1a851f5f4c6168cd8b072ca72b4d9fe4.svg]]
+
+** Testes
+** Extras
+** Documentação
