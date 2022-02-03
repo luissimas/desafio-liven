@@ -1,6 +1,6 @@
 import { User } from '@entities/user'
 import { InvalidFieldError, UserAlreadyExists } from '@errors'
-import { MemoryUserRepository } from '@infrasctructure/repositories/user/memory-user-repository'
+import { MemoryUserRepository } from '@infrastructure/repositories/user/memory-user-repository'
 import { CreateUserUseCase } from '.'
 import { ICreateUserDTO } from './create-user-dto'
 

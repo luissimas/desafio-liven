@@ -32,7 +32,7 @@
     "paths": {
       "@controllers/*": ["./src/adapters/controllers/*"],
       "@repositories/*": ["./src/adapters/repositories/*"],
-      "@infrasctructure/*": ["./src/infrastructure/*"],
+      "@infrastructure/*": ["./src/infrastructure/*"],
       "@entities/*": ["./src/entities/*"],
       "@middlewares/*": ["./src/middlewares/*"],
       "@routes/*": ["./src/routes/*"],
