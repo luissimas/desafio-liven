@@ -1,10 +1,12 @@
 import { Router } from 'express'
-import { createUserController } from '@factories/user/create-user'
-import { listUserController } from '@factories/user/list-user'
+import { makeCreateUserController } from '@factories/user/create-user'
+import { makeListUserController } from '@factories/user/list-user'
+import { makeUpdateUserController } from '@factories/user/update-user'
 
 const router = Router()
 
-router.post('/user', (req, res, next) => createUserController.handle(req, res, next))
-router.get('/user', (req, res, next) => listUserController.handle(req, res, next))
+router.post('/user', (req, res, next) => makeCreateUserController().handle(req, res, next))
+router.get('/user', (req, res, next) => makeListUserController().handle(req, res, next))
+router.patch('/user/:id', (req, res, next) => makeUpdateUserController().handle(req, res, next))
 
 export { router }

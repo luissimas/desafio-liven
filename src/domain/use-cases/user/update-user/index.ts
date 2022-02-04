@@ -17,7 +17,7 @@ export class UpdateUserUseCase {
     if (data.email) {
       const userAlreadyExists = await this.userRepository.findByEmail(data.email)
 
-      if (userAlreadyExists) {
+      if (userAlreadyExists && userAlreadyExists.id !== data.id) {
         throw new UserAlreadyExists(data.email, 'email')
       }
     }
