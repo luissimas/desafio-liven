@@ -31,7 +31,8 @@ export class MemoryUserRepository implements IUserRepository {
     MemoryUserRepository.users[index] = user
   }
 
-  async delete(id: string): Promise<void> {
+  async delete(user: User): Promise<void> {
+    const id = user.id
     const index = MemoryUserRepository.users.findIndex(user => user.id === id)
 
     MemoryUserRepository.users.splice(index, 1)
