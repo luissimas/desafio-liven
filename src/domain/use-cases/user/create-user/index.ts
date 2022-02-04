@@ -7,7 +7,7 @@ import { hash } from 'bcrypt'
 export class CreateUserUseCase {
   constructor(private userRepository: IUserRepository) {}
 
-  async execute(data: ICreateUserDTO): Promise<string> {
+  async execute(data: ICreateUserDTO): Promise<string | never> {
     const userAlreadyExists = await this.userRepository.findByEmail(data.email)
 
     if (userAlreadyExists) {

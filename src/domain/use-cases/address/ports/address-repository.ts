@@ -1,6 +1,6 @@
 import { Address } from '@entities/address'
 
-export interface IUserRepository {
+export interface IAddressRepository {
   save(address: Address): Promise<void>
   findAll(): Promise<Address[]>
   findById(id: string): Promise<Address | undefined>
