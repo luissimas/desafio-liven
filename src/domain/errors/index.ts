@@ -8,6 +8,14 @@ export class UserAlreadyExists extends BaseError {
   }
 }
 
+export class UserNotFound extends BaseError {
+  status = 404
+
+  constructor(public readonly details?: string) {
+    super(`User not found.`, details)
+  }
+}
+
 export class InvalidFieldError extends BaseError {
   status = 400
 
