@@ -3,6 +3,7 @@ import { InvalidFieldError } from '@errors'
 
 export class Address {
   public readonly id: string
+  public readonly idUser: string
   public readonly state: string
   public readonly country: string
   public readonly city: string
@@ -19,12 +20,19 @@ export class Address {
     Address.validateNumber(props.number)
 
     this.id = id || uuid()
+    this.idUser = props.idUser
     this.state = props.state
     this.country = props.country
     this.city = props.city
     this.zipcode = props.zipcode
     this.street = props.street
     this.number = props.number
+  }
+
+  public static validateIdUser(idUser: string) {
+    if (!idUser || idUser.length === 0) {
+      throw new InvalidFieldError(idUser, 'idUser', 'Id user must be provided.')
+    }
   }
 
   public static validateState(state: string) {

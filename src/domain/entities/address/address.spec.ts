@@ -4,6 +4,7 @@ import { InvalidFieldError } from '@errors'
 describe('Address', () => {
   it('Should be able to instantiate address', () => {
     const data = {
+      idUser: '198237askdlf',
       state: 'SP',
       country: 'Brazil',
       city: 'São Carlos',
@@ -31,8 +32,23 @@ describe('Address', () => {
     expect(address.number).toEqual(data.number)
   })
 
+  it('Should throw error on invalid idUser', () => {
+    const data = {
+      idUser: '',
+      state: 'SPP',
+      country: 'Brazil',
+      city: 'São Carlos',
+      zipcode: '13310888',
+      street: 'Rua das flores',
+      number: '392B',
+    }
+
+    expect(() => new Address(data)).toThrow(InvalidFieldError)
+  })
+
   it('Should throw error on invalid state', () => {
     const dataOver = {
+      idUser: '198237askdlf',
       state: 'SPP',
       country: 'Brazil',
       city: 'São Carlos',
@@ -42,6 +58,7 @@ describe('Address', () => {
     }
 
     const dataUnder = {
+      idUser: '198237askdlf',
       state: '',
       country: 'Brazil',
       city: 'São Carlos',
@@ -56,6 +73,7 @@ describe('Address', () => {
 
   it('Should throw error on invalid country', () => {
     const data = {
+      idUser: '198237askdlf',
       state: 'SP',
       country: '',
       city: 'São Carlos',
@@ -69,6 +87,7 @@ describe('Address', () => {
 
   it('Should throw error on invalid city', () => {
     const data = {
+      idUser: '198237askdlf',
       state: 'SP',
       country: 'Brazil',
       city: '',
@@ -82,6 +101,7 @@ describe('Address', () => {
 
   it('Should throw error on invalid zipcode', () => {
     const data = {
+      idUser: '198237askdlf',
       state: 'SP',
       country: 'Brazil',
       city: 'São Carlos',
@@ -95,6 +115,7 @@ describe('Address', () => {
 
   it('Should throw error on invalid street', () => {
     const data = {
+      idUser: '198237askdlf',
       state: 'SP',
       country: 'Brazil',
       city: 'São Carlos',
@@ -108,6 +129,7 @@ describe('Address', () => {
 
   it('Should throw error on invalid number', () => {
     const data = {
+      idUser: '198237askdlf',
       state: 'SP',
       country: 'Brazil',
       city: 'São Carlos',
