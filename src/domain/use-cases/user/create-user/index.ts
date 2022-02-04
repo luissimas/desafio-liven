@@ -1,4 +1,4 @@
-import { IUserRepository } from '@repositories/user/IUserRepository'
+import { IUserRepository } from '@repositories/user'
 import { User } from '@entities/user'
 import { ICreateUserDTO } from './create-user-dto'
 import { UserAlreadyExists } from '@errors'

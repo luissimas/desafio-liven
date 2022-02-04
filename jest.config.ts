@@ -13,9 +13,9 @@ module.exports = {
   // A map from regular expressions to module names or to arrays of module names that allow to stub out resources with a single module
   // Enables tsconfig-paths in jest
   moduleNameMapper: {
-    '@errors/(.*)': '<rootDir>/src/errors/$1',
-    '@errors': '<rootDir>/src/errors',
-    '@entities/(.*)': '<rootDir>/src/entities/$1',
+    '@errors/(.*)': '<rootDir>/src/domain/errors/$1',
+    '@errors': '<rootDir>/src/domain/errors',
+    '@entities/(.*)': '<rootDir>/src/domain/entities/$1',
     '@infrastructure/(.*)': '<rootDir>/src/infrastructure/$1',
   },
 

@@ -1,5 +1,5 @@
-import { IUserRepository } from '../../../adapters/repositories/user/IUserRepository'
-import { User } from '../../../entities/user'
+import { IUserRepository } from '@repositories/user'
+import { User } from '@entities/user'
 
 export class MemoryUserRepository implements IUserRepository {
   static users: Array<User> = []
@@ -8,7 +8,7 @@ export class MemoryUserRepository implements IUserRepository {
     MemoryUserRepository.users.push(user)
   }
 
-  async list(): Promise<User[]> {
+  async findAll(): Promise<User[]> {
     return MemoryUserRepository.users
   }
 

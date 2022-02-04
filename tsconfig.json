@@ -33,13 +33,14 @@
       "@controllers/*": ["./src/adapters/controllers/*"],
       "@repositories/*": ["./src/adapters/repositories/*"],
       "@infrastructure/*": ["./src/infrastructure/*"],
-      "@entities/*": ["./src/entities/*"],
+      "@entities/*": ["./src/domain/entities/*"],
       "@middlewares/*": ["./src/middlewares/*"],
+      "@factories/*": ["./src/factories/*"],
       "@routes/*": ["./src/routes/*"],
       "@routes": ["./src/routes"],
-      "@use-cases/*": ["./src/use-cases/*"],
-      "@errors/*": ["./src/errors/*"],
-      "@errors": ["./src/errors"],
+      "@use-cases/*": ["./src/domain/use-cases/*"],
+      "@errors/*": ["./src/domain/errors/*"],
+      "@errors": ["./src/domain/errors"],
     },
     // "rootDirs": [],                                   /* Allow multiple folders to be treated as one when resolving modules. */
     // "typeRoots": [],                                  /* Specify multiple folders that act like `./node_modules/@types`. */
