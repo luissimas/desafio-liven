@@ -1,9 +1,11 @@
 import { User } from '@entities/user'
+import { MemoryAddressRepository } from '@infrastructure/repositories/address/memory-address-repository'
 import { MemoryUserRepository } from '@infrastructure/repositories/user/memory-user-repository'
 import { ListUserUseCase } from '.'
 
-const repo = new MemoryUserRepository()
-const useCase = new ListUserUseCase(repo)
+const userRepo = new MemoryUserRepository()
+const addressesRepo = new MemoryAddressRepository()
+const useCase = new ListUserUseCase(userRepo, addressesRepo)
 
 beforeEach(() => {
   MemoryUserRepository.users = []
@@ -19,8 +21,8 @@ describe('List user use case', () => {
 
     const user = new User(data)
 
-    await repo.save(user)
-    await repo.save(user)
+    await userRepo.save(user)
+    await userRepo.save(user)
 
     const result = await useCase.execute()
 
