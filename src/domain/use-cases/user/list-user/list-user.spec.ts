@@ -30,7 +30,7 @@ describe('List user use case', () => {
     expect(result).toHaveLength(2)
   })
 
-  it('Should return an empty array whe no users are registered', async () => {
+  it('Should return an empty array when no users are registered', async () => {
     const result = await useCase.execute()
 
     expect(result).toBeDefined()

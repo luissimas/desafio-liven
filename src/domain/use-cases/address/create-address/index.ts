@@ -1,5 +1,5 @@
 import { Address } from '@entities/address'
-import { UserNotFound } from '@errors'
+import { EntityNotFound } from '@errors'
 import { IUserRepository } from '@use-cases/user/ports/user-repository'
 import { IAddressRepository } from '../ports/address-repository'
 import { ICreateAddressDTO } from './create-address-dto'
@@ -14,7 +14,7 @@ export class CreateAddressUseCase {
     const user = await this.userRepository.findById(data.idUser)
 
     if (!user) {
-      throw new UserNotFound()
+      throw new EntityNotFound('User')
     }
 
     await this.addressRepository.save(address)

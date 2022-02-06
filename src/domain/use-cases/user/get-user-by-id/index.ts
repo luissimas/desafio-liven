@@ -1,5 +1,5 @@
 import { User } from '@entities/user'
-import { UserNotFound } from '@errors'
+import { EntityNotFound } from '@errors'
 import { IUserRepository } from '@use-cases/user/ports/user-repository'
 import { IGetUserByIdDTO } from './get-user-by-id-dto'
 
@@ -10,7 +10,7 @@ export class GetUserByIdUseCase {
     const user = await this.userRepository.findById(data.id)
 
     if (!user) {
-      throw new UserNotFound()
+      throw new EntityNotFound('User')
     }
 
     return user

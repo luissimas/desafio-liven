@@ -1,4 +1,4 @@
-import { UserNotFound } from '@errors'
+import { EntityNotFound } from '@errors'
 import { IUserRepository } from '@use-cases/user/ports/user-repository'
 import { IDeleteUserDTO } from './delete-user-dto'
 
@@ -9,7 +9,7 @@ export class DeleteUserUseCase {
     const userRegistered = await this.userRepository.findById(data.id)
 
     if (!userRegistered) {
-      throw new UserNotFound()
+      throw new EntityNotFound('User')
     }
 
     await this.userRepository.delete(userRegistered)

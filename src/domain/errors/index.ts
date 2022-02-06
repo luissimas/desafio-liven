@@ -6,9 +6,9 @@ export class UserAlreadyExists extends BaseError {
   }
 }
 
-export class UserNotFound extends BaseError {
-  constructor(public readonly details?: string) {
-    super(`User not found.`, details)
+export class EntityNotFound extends BaseError {
+  constructor(public readonly entity: string, public readonly details?: string) {
+    super(`${entity} not found.`, details)
   }
 }
 

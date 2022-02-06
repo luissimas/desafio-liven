@@ -2,7 +2,7 @@ import { User } from '@entities/user'
 import { MemoryUserRepository } from '@infrastructure/repositories/user/memory-user-repository'
 import { UpdateUserUseCase } from '.'
 import { IUpdateUserDTO } from './update-user-dto'
-import { UserNotFound } from '@errors'
+import { EntityNotFound } from '@errors'
 import { compare } from 'bcrypt'
 
 const repo = new MemoryUserRepository()
@@ -143,7 +143,7 @@ describe('Update user use case', () => {
     }
   })
 
-  it('Should not be able to delete an inexistent user', async () => {
-    expect(async () => await useCase.execute({ id: 'alskdjf' })).rejects.toThrow(UserNotFound)
+  it('Should not be able to update an inexistent user', async () => {
+    expect(async () => await useCase.execute({ id: 'alskdjf' })).rejects.toThrow(EntityNotFound)
   })
 })

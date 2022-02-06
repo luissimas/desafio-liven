@@ -1,5 +1,5 @@
 import { User } from '@entities/user'
-import { UserNotFound } from '@errors'
+import { EntityNotFound } from '@errors'
 import { MemoryUserRepository } from '@infrastructure/repositories/user/memory-user-repository'
 import { GetUserByIdUseCase } from '.'
 
@@ -27,6 +27,6 @@ describe('Get user by id use case', () => {
   })
 
   it('Should return error when user is not found', () => {
-    expect(async () => await useCase.execute({ id: '' })).rejects.toThrow(UserNotFound)
+    expect(async () => await useCase.execute({ id: '' })).rejects.toThrow(EntityNotFound)
   })
 })

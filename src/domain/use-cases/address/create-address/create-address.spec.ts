@@ -1,6 +1,6 @@
 import { Address } from '@entities/address'
 import { User } from '@entities/user'
-import { UserNotFound } from '@errors'
+import { EntityNotFound } from '@errors'
 import { MemoryAddressRepository } from '@infrastructure/repositories/address/memory-address-repository'
 import { MemoryUserRepository } from '@infrastructure/repositories/user/memory-user-repository'
 import { CreateAddressUseCase } from '.'
@@ -63,6 +63,6 @@ describe('Create addresses', () => {
       number: '1982',
     }
 
-    expect(async () => await useCase.execute(data)).rejects.toThrow(UserNotFound)
+    expect(async () => await useCase.execute(data)).rejects.toThrow(EntityNotFound)
   })
 })

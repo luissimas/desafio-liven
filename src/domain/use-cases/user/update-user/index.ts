@@ -1,5 +1,5 @@
 import { User } from '@entities/user'
-import { UserAlreadyExists, UserNotFound } from '@errors'
+import { UserAlreadyExists, EntityNotFound } from '@errors'
 import { IUserRepository } from '@use-cases/user/ports/user-repository'
 import { IUpdateUserDTO } from './update-user-dto'
 import { hash } from 'bcrypt'
@@ -11,7 +11,7 @@ export class UpdateUserUseCase {
     const userRegistered = await this.userRepository.findById(data.id)
 
     if (!userRegistered) {
-      throw new UserNotFound()
+      throw new EntityNotFound('User')
     }
 
     if (data.email) {

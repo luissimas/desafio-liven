@@ -1,4 +1,3 @@
-import { User } from '@entities/user'
 import { IAddressRepository } from '@use-cases/address/ports/address-repository'
 import { IUserRepository } from '@use-cases/user/ports/user-repository'
 import { IListUserDTO } from './list-user-dto'

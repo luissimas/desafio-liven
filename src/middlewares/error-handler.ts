@@ -7,7 +7,7 @@ type StatusAssoc = {
 
 const httpStatus: StatusAssoc = {
   UserAlreadyExists: 400,
-  UserNotFound: 404,
+  EntityNotFound: 404,
   InvalidFieldError: 400,
 }
 

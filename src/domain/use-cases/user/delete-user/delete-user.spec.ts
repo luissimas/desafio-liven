@@ -1,5 +1,5 @@
 import { User } from '@entities/user'
-import { UserNotFound } from '@errors'
+import { EntityNotFound } from '@errors'
 import { MemoryUserRepository } from '@infrastructure/repositories/user/memory-user-repository'
 import { DeleteUserUseCase } from '.'
 
@@ -36,6 +36,6 @@ describe('Delete user use case', () => {
   })
 
   it('Should not be able to delete an inexistent user', async () => {
-    expect(async () => await useCase.execute({ id: 'alskdjf' })).rejects.toThrow(UserNotFound)
+    expect(async () => await useCase.execute({ id: 'alskdjf' })).rejects.toThrow(EntityNotFound)
   })
 })
