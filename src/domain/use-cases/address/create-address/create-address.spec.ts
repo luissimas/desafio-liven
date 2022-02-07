@@ -19,6 +19,7 @@ describe('Create addresses', () => {
   it('Should be able to create a new address', async () => {
     const user = new User({
       name: 'Jorge',
+      age: 20,
       email: 'jorge@gmail.com',
       password: 'banana1928',
     })

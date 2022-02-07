@@ -16,6 +16,7 @@ describe('Update user use case', () => {
   it('Should be able to update all fields from user', async () => {
     const oldUser = new User({
       name: 'Jorge',
+      age: 20,
       email: 'jorge@gmail.com',
       password: 'banana1928',
     })
@@ -24,6 +25,7 @@ describe('Update user use case', () => {
 
     const data: IUpdateUserDTO = {
       id: oldUser.id,
+      age: 20,
       name: 'Jorge Silva',
       email: 'naoeojorge@hotmail.com',
       password: 'batata9883',
@@ -38,6 +40,7 @@ describe('Update user use case', () => {
     if (user) {
       expect(user.id).toEqual(oldUser.id)
       expect(user.name).toEqual(data.name)
+      expect(user.age).toEqual(data.age)
       expect(user.email).toEqual(data.email)
 
       if (data.password) {
@@ -50,6 +53,7 @@ describe('Update user use case', () => {
   it('Should be able to update only user name', async () => {
     const oldUser = new User({
       name: 'Jorge',
+      age: 20,
       email: 'jorge@gmail.com',
       password: 'banana1928',
     })
@@ -70,6 +74,41 @@ describe('Update user use case', () => {
     if (user) {
       expect(user.id).toEqual(oldUser.id)
       expect(user.name).toEqual(data.name)
+      expect(user.age).toEqual(oldUser.age)
+      expect(user.email).toEqual(oldUser.email)
+
+      if (data.password) {
+        const match = await compare(oldUser.password, user.password)
+        expect(match).toBeTruthy()
+      }
+    }
+  })
+
+  it('Should be able to update only user age', async () => {
+    const oldUser = new User({
+      name: 'Jorge',
+      age: 20,
+      email: 'jorge@gmail.com',
+      password: 'banana1928',
+    })
+
+    await repo.save(oldUser)
+
+    const data: IUpdateUserDTO = {
+      id: oldUser.id,
+      age: 40,
+    }
+
+    await useCase.execute(data)
+
+    const user = await repo.findById(oldUser.id)
+
+    expect(user).toBeDefined()
+
+    if (user) {
+      expect(user.id).toEqual(oldUser.id)
+      expect(user.name).toEqual(oldUser.name)
+      expect(user.age).toEqual(data.age)
       expect(user.email).toEqual(oldUser.email)
 
       if (data.password) {
@@ -82,6 +121,7 @@ describe('Update user use case', () => {
   it('Should be able to update only user email', async () => {
     const oldUser = new User({
       name: 'Jorge',
+      age: 20,
       email: 'jorge@gmail.com',
       password: 'banana1928',
     })
@@ -102,6 +142,7 @@ describe('Update user use case', () => {
     if (user) {
       expect(user.id).toEqual(oldUser.id)
       expect(user.name).toEqual(oldUser.name)
+      expect(user.age).toEqual(oldUser.age)
       expect(user.email).toEqual(data.email)
 
       if (data.password) {
@@ -114,6 +155,7 @@ describe('Update user use case', () => {
   it('Should be able to update only user password', async () => {
     const oldUser = new User({
       name: 'Jorge',
+      age: 20,
       email: 'jorge@gmail.com',
       password: 'banana1928',
     })

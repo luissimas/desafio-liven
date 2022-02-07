@@ -14,6 +14,7 @@ describe('Get user by id use case', () => {
   it('Should be able to get user from its id', async () => {
     const user = new User({
       name: 'Jorge',
+      age: 20,
       email: 'jorge@gmail.com',
       password: 'banana1928',
     })

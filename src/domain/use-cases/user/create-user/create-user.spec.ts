@@ -15,6 +15,7 @@ describe('Create user use case', () => {
   it('Should be able to create a new user', async () => {
     const data: ICreateUserDTO = {
       name: 'Jorge',
+      age: 20,
       email: 'jorge@gmail.com',
       password: 'banana1928',
     }
@@ -35,6 +36,7 @@ describe('Create user use case', () => {
   it('Should not be able to create user with registered e-mail', async () => {
     const data: ICreateUserDTO = {
       name: 'Jorge',
+      age: 20,
       email: 'jorge@gmail.com',
       password: 'banana1928',
     }
@@ -47,6 +49,7 @@ describe('Create user use case', () => {
   it('Should not be able to create user with invalid name', async () => {
     const data: ICreateUserDTO = {
       name: '',
+      age: 20,
       email: 'jorge@gmail.com',
       password: 'banana1928',
     }
@@ -54,9 +57,21 @@ describe('Create user use case', () => {
     await expect(async () => await useCase.execute(data)).rejects.toThrow(InvalidFieldError)
   })
 
-  it('Should not be able to create user with invalid name', async () => {
+  it('Should not be able to create user with invalid age', async () => {
     const data: ICreateUserDTO = {
       name: 'Jorge',
+      age: 0,
+      email: 'jorge@gmail.com',
+      password: 'banana1928',
+    }
+
+    await expect(async () => await useCase.execute(data)).rejects.toThrow(InvalidFieldError)
+  })
+
+  it('Should not be able to create user with invalid email', async () => {
+    const data: ICreateUserDTO = {
+      name: 'Jorge',
+      age: 20,
       email: '',
       password: 'banana1928',
     }
@@ -67,6 +82,7 @@ describe('Create user use case', () => {
   it('Should not be able to create user with invalid password', async () => {
     const data: ICreateUserDTO = {
       name: 'Jorge',
+      age: 20,
       email: 'jorge@gmail.com',
       password: '',
     }

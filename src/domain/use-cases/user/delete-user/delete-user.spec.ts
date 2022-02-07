@@ -14,6 +14,7 @@ describe('Delete user use case', () => {
   it('Should be able to delete user', async () => {
     const data = {
       name: 'Jorge',
+      age: 20,
       email: 'jorge@hotmail.com',
       password: 'namamamam',
     }

@@ -6,10 +6,10 @@ export class UpdateUserController {
 
   async handle(req: Request, res: Response, next: NextFunction): Promise<Response | void> {
     const { id } = req.params
-    const { name, email, password } = req.body
+    const { name, age, email, password } = req.body
 
     try {
-      await this.updateUserUseCase.execute({ id, name, email, password })
+      await this.updateUserUseCase.execute({ id, name, age, email, password })
 
       return res.status(204).send()
     } catch (error) {

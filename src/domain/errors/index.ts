@@ -13,7 +13,7 @@ export class EntityNotFound extends BaseError {
 }
 
 export class InvalidFieldError extends BaseError {
-  constructor(value: string, field: string, public readonly details?: string) {
+  constructor(value: string | number, field: string, public readonly details?: string) {
     super(`Value "${value}" in field "${field}" is invalid.`, details)
   }
 }

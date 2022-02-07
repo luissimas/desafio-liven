@@ -5,10 +5,10 @@ export class CreateUserController {
   constructor(private createUserUseCase: CreateUserUseCase) {}
 
   async handle(req: Request, res: Response, next: NextFunction): Promise<Response | void> {
-    const { name, email, password } = req.body
+    const { name, age, email, password } = req.body
 
     try {
-      const id = await this.createUserUseCase.execute({ name, email, password })
+      const id = await this.createUserUseCase.execute({ name, age, email, password })
 
       return res.status(201).json({ id })
     } catch (error) {

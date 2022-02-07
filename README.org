@@ -21,12 +21,10 @@ Além dessas, algumas outras ferramentas extras estão sendo utilizadas para fun
 
 - Jest como base para definição e execução dos testes
 - Supertest para a execução de testes de integração
-- Fc-check para property-based testing
 - Bcrypt para criptografia de senhas
 - JOI e Celebrate para validação de requisições
 - Eslint e prettier para linting e formatação
-- uuid para gerar identificadores únicos
-- Faker.js para a geração de dados para seeds
+- uuid para a geração de identificadores únicos
 
 ** Especificações
 O sistema lida com duas entidades: *usuários* e *endereços*, que mantém um relacionamento do tipo =1:N=, ou seja, um usuário pode ter vários endereços, mas os endereços estão relacionados à apenas um usuário.

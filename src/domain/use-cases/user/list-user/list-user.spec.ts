@@ -15,6 +15,7 @@ describe('List user use case', () => {
   it('Should be able to list all users', async () => {
     const data = {
       name: 'Jorge',
+      age: 20,
       email: 'jorge@gmail.com',
       password: 'banana1928',
     }
