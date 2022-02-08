@@ -8,17 +8,19 @@ export class ObjectionUserRepository implements IUserRepository {
   }
 
   async findAll(filters?: filter): Promise<User[]> {
-    const users = await UserModel.query().modify(query => {
-      if (filters) {
-        query.where(filters)
-      }
-    })
+    const users = await UserModel.query()
+      .modify(query => {
+        if (filters) {
+          query.where(filters)
+        }
+      })
+      .withGraphFetched('addresses')
 
     return users
   }
 
   async findById(id: string): Promise<User | undefined> {
-    const user = await UserModel.query().findById(id)
+    const user = await UserModel.query().findById(id).withGraphFetched('addresses')
 
     return user
   }

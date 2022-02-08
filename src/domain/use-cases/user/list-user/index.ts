@@ -8,11 +8,7 @@ export class ListUserUseCase {
 
   async execute(filters?: IListUserDTO): Promise<User[]> {
     const users = await this.userRepository.findAll(filters)
-    const addresses = await this.addressesRepository.findAll()
 
-    return users.map(user => ({
-      ...user,
-      addresses: addresses.filter(address => address.idUser === user.id),
-    }))
+    return users
   }
 }

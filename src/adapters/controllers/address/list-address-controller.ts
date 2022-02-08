@@ -17,7 +17,7 @@ export class ListAddressController {
       number: number as string,
     }
 
-    // Filtering undefined fields from query params
+    // Filtering undefined fields from query strings
     const filters = Object.fromEntries(Object.entries(rawFilters).filter(([_key, value]) => value))
 
     try {
