@@ -1,11 +1,13 @@
 import { User } from '@entities/user'
 import { InvalidFieldError, UserAlreadyExists } from '@errors'
+import { NodemailerEmailService } from '@infrastructure/email/nodemailer-email-service'
 import { MemoryUserRepository } from '@infrastructure/repositories/user/memory-user-repository'
 import { CreateUserUseCase } from '.'
 import { ICreateUserDTO } from './create-user-dto'
 
 const repo = new MemoryUserRepository()
-const useCase = new CreateUserUseCase(repo)
+const email = new NodemailerEmailService()
+const useCase = new CreateUserUseCase(repo, email)
 
 beforeEach(() => {
   MemoryUserRepository.users = []

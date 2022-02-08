@@ -38,7 +38,7 @@
       "@factories/*": ["./src/factories/*"],
       "@routes/*": ["./src/routes/*"],
       "@routes": ["./src/routes"],
-      "@use-cases/*": ["./src/domain/use-cases/*"],
+      "@use-cases/*": ["./src/use-cases/*"],
       "@errors/*": ["./src/domain/errors/*"],
       "@utils/*": ["./src/utils/*"],
       "@errors": ["./src/domain/errors"],
