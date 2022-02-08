@@ -7,11 +7,14 @@ export class ListUserController {
   async handle(req: Request, res: Response, next: NextFunction): Promise<Response | void> {
     const { name, email, age } = req.query
 
-    const filters = {
+    const rawFilters = {
       name: name as string,
       email: email as string,
       age: age && !isNaN(+age) ? parseInt(age as string) : undefined,
     }
+
+    // Filtering undefined fields from query params
+    const filters = Object.fromEntries(Object.entries(rawFilters).filter(([_key, value]) => value))
 
     try {
       const users = await this.listUserUseCase.execute(filters)

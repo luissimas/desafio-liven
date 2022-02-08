@@ -7,7 +7,7 @@ export class ListAddressController {
   async handle(req: Request, res: Response, next: NextFunction): Promise<Response | void> {
     const { idUser, state, country, city, zipcode, street, number } = req.query
 
-    const filters = {
+    const rawFilters = {
       idUser: idUser as string,
       state: state as string,
       country: country as string,
@@ -16,6 +16,9 @@ export class ListAddressController {
       street: street as string,
       number: number as string,
     }
+
+    // Filtering undefined fields from query params
+    const filters = Object.fromEntries(Object.entries(rawFilters).filter(([_key, value]) => value))
 
     try {
       const addresses = await this.listAddressUseCase.execute(filters)

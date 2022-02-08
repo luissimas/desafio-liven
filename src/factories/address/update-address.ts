@@ -1,10 +1,10 @@
 import { UpdateAddressController } from '@controllers/address/update-address-controller'
-import { MemoryAddressRepository } from '@infrastructure/repositories/address/memory-address-repository'
+import { ObjectionAddressRepository } from '@infrastructure/repositories/address/objection-address-repository'
 import { UpdateAddressUseCase } from '@use-cases/address/update-address'
 
 export function makeUpdateAddressController() {
-  const memoryAddressRepository = new MemoryAddressRepository()
-  const updateAddressUseCase = new UpdateAddressUseCase(memoryAddressRepository)
+  const objectionAddressRepository = new ObjectionAddressRepository()
+  const updateAddressUseCase = new UpdateAddressUseCase(objectionAddressRepository)
 
   const updateAddressController = new UpdateAddressController(updateAddressUseCase)
 

@@ -1,10 +1,10 @@
 import { GetUserByIdController } from '@controllers/user/get-user-by-id-controller'
-import { MemoryUserRepository } from '@infrastructure/repositories/user/memory-user-repository'
+import { ObjectionUserRepository } from '@infrastructure/repositories/user/objection-user-repository'
 import { GetUserByIdUseCase } from '@use-cases/user/get-user-by-id'
 
 export function makeGetUserByIdController() {
-  const memoryUserRepository = new MemoryUserRepository()
-  const getUserByIdUseCase = new GetUserByIdUseCase(memoryUserRepository)
+  const objectionUserRepository = new ObjectionUserRepository()
+  const getUserByIdUseCase = new GetUserByIdUseCase(objectionUserRepository)
 
   const getUserByIdController = new GetUserByIdController(getUserByIdUseCase)
 

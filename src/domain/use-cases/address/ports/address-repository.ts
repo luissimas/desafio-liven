@@ -14,7 +14,7 @@ export interface IAddressRepository {
   save(address: Address): Promise<void>
   findAll(filters?: filter): Promise<Address[]>
   findById(id: string): Promise<Address | undefined>
-  findByUser(idUser: string): Promise<Address | undefined>
+  findByUser(idUser: string): Promise<Address[]>
   update(address: Address): Promise<void>
   delete(address: Address): Promise<void>
 }

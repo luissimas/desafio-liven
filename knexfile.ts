@@ -16,11 +16,11 @@ const config: Knex.Config = {
     max: 10,
   },
   seeds: {
-    directory: './seeds',
+    directory: 'src/infrastructure/database/objection/seeds',
   },
   migrations: {
     tableName: 'knex_migrations',
-    directory: './migrations',
+    directory: 'src/infrastructure/database/objection/migrations',
   },
   ...knexSnakeCaseMappers(),
 }

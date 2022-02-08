@@ -1,10 +1,10 @@
 import { ListAddressController } from '@controllers/address/list-address-controller'
-import { MemoryAddressRepository } from '@infrastructure/repositories/address/memory-address-repository'
+import { ObjectionAddressRepository } from '@infrastructure/repositories/address/objection-address-repository'
 import { ListAddressUseCase } from '@use-cases/address/list-address'
 
 export function makeListAdressController() {
-  const memoryAddressRepository = new MemoryAddressRepository()
-  const listAddressUseCase = new ListAddressUseCase(memoryAddressRepository)
+  const objectionAddressRepository = new ObjectionAddressRepository()
+  const listAddressUseCase = new ListAddressUseCase(objectionAddressRepository)
 
   const listAddressController = new ListAddressController(listAddressUseCase)
 

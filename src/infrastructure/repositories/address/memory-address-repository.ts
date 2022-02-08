@@ -18,8 +18,8 @@ export class MemoryAddressRepository implements IAddressRepository {
     return address
   }
 
-  async findByUser(idUser: string): Promise<Address | undefined> {
-    const address = MemoryAddressRepository.addresses.find(address => address.idUser === idUser)
+  async findByUser(idUser: string): Promise<Address[]> {
+    const address = MemoryAddressRepository.addresses.filter(address => address.idUser === idUser)
 
     return address
   }

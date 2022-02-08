@@ -4,8 +4,8 @@
   "main": "index.js",
   "license": "MIT",
   "scripts": {
-    "db:create": "knex migrate:latest --knexfile src/infrastructure/database/objection/knexfile.ts",
-    "db:delete": "knex migrate:rollback --knexfile src/infrastructure/database/objection/knexfile.ts",
+    "db:create": "knex migrate:latest",
+    "db:delete": "knex migrate:rollback",
     "dev": "ts-node-dev --respawn --transpile-only --ignore-watch node_modules -r tsconfig-paths/register src/server.ts",
     "test": "jest"
   },

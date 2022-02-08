@@ -1,13 +1,13 @@
 import { ListUserController } from '@controllers/user/list-user-controller'
-import { MemoryAddressRepository } from '@infrastructure/repositories/address/memory-address-repository'
-import { MemoryUserRepository } from '@infrastructure/repositories/user/memory-user-repository'
+import { ObjectionAddressRepository } from '@infrastructure/repositories/address/objection-address-repository'
+import { ObjectionUserRepository } from '@infrastructure/repositories/user/objection-user-repository'
 import { ListUserUseCase } from '@use-cases/user/list-user'
 
 export function makeListUserController() {
-  const memoryUserRepository = new MemoryUserRepository()
-  const memoryAddressRepository = new MemoryAddressRepository()
+  const objectionUserRepository = new ObjectionUserRepository()
+  const objectionAddressRepository = new ObjectionAddressRepository()
 
-  const listUserUseCase = new ListUserUseCase(memoryUserRepository, memoryAddressRepository)
+  const listUserUseCase = new ListUserUseCase(objectionUserRepository, objectionAddressRepository)
 
   const listUserController = new ListUserController(listUserUseCase)
 
