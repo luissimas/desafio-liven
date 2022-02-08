@@ -4,7 +4,7 @@ import { router as address } from './address'
 
 const router = Router()
 
-router.use('/', user)
-router.use('/', address)
+router.use('/user/address', address)
+router.use('/user', user)
 
 export { router }

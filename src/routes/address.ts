@@ -15,10 +15,10 @@ import { makeDeleteAddressValidation } from '@middlewares/validation/address/del
 
 const router = Router()
 
-router.post('/address', makeCreateAddressValidation(), adaptRoute(makeCreateAddressController()))
-router.get('/address', makeListAddressValidation(), adaptRoute(makeListAdressController()))
-router.get('/address/:id', makeGetAddressByIdValidation(), adaptRoute(makeGetAddressByIdController()))
-router.patch('/address/:id', makeUpdateAddressValidation(), adaptRoute(makeUpdateAddressController()))
-router.delete('/address/:id', makeDeleteAddressValidation(), adaptRoute(makeDeleteAddressController()))
+router.post('/', makeCreateAddressValidation(), adaptRoute(makeCreateAddressController()))
+router.get('/', makeListAddressValidation(), adaptRoute(makeListAdressController()))
+router.get('/:id', makeGetAddressByIdValidation(), adaptRoute(makeGetAddressByIdController()))
+router.patch('/:id', makeUpdateAddressValidation(), adaptRoute(makeUpdateAddressController()))
+router.delete('/:id', makeDeleteAddressValidation(), adaptRoute(makeDeleteAddressController()))
 
 export { router }

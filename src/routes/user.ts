@@ -15,10 +15,10 @@ import { makeDeleteUserValidation } from '@middlewares/validation/user/delete-us
 
 const router = Router()
 
-router.post('/user', makeCreateUserValidation(), adaptRoute(makeCreateUserController()))
-router.get('/user', makeListUserValidation(), adaptRoute(makeListUserController()))
-router.get('/user/:id', makeGetUserByIdValidation(), adaptRoute(makeGetUserByIdController()))
-router.patch('/user/:id', makeUpdateUserValidation(), adaptRoute(makeUpdateUserController()))
-router.delete('/user/:id', makeDeleteUserValidation(), adaptRoute(makeDeleteUserController()))
+router.post('/', makeCreateUserValidation(), adaptRoute(makeCreateUserController()))
+router.get('/', makeListUserValidation(), adaptRoute(makeListUserController()))
+router.get('/:id', makeGetUserByIdValidation(), adaptRoute(makeGetUserByIdController()))
+router.patch('/:id', makeUpdateUserValidation(), adaptRoute(makeUpdateUserController()))
+router.delete('/:id', makeDeleteUserValidation(), adaptRoute(makeDeleteUserController()))
 
 export { router }
