@@ -1,4 +1,5 @@
 import { User } from '@entities/user'
+import { IUserData } from '@entities/user/user-data'
 import { UserModel } from '@infrastructure/database/objection/models/user'
 import { filter, IUserRepository } from '@use-cases/user/ports/user-repository'
 
@@ -7,7 +8,7 @@ export class ObjectionUserRepository implements IUserRepository {
     await UserModel.query().insert(user)
   }
 
-  async findAll(filters?: filter): Promise<User[]> {
+  async findAll(filters?: filter): Promise<IUserData[]> {
     const users = await UserModel.query()
       .modify(query => {
         if (filters) {
@@ -19,13 +20,13 @@ export class ObjectionUserRepository implements IUserRepository {
     return users
   }
 
-  async findById(id: string): Promise<User | undefined> {
+  async findById(id: string): Promise<IUserData | undefined> {
     const user = await UserModel.query().findById(id).withGraphFetched('addresses')
 
     return user
   }
 
-  async findByEmail(email: string): Promise<User | undefined> {
+  async findByEmail(email: string): Promise<IUserData | undefined> {
     return UserModel.query().where({ email }).first()
   }
 

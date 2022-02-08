@@ -1,6 +1,7 @@
+import { Address } from '@entities/address'
 import { Model } from 'objection'
 
-export class AddressModel extends Model {
+export class AddressModel extends Model implements Address {
   public readonly id!: string
   public readonly idUser!: string
   public readonly state!: string

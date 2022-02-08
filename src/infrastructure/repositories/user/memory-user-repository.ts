@@ -1,5 +1,7 @@
 import { IUserRepository } from '@use-cases/user/ports/user-repository'
 import { User } from '@entities/user'
+import { IUserData } from '@entities/user/user-data'
+import { MemoryAddressRepository } from '../address/memory-address-repository'
 
 export class MemoryUserRepository implements IUserRepository {
   static users: Array<User> = []
@@ -8,18 +10,33 @@ export class MemoryUserRepository implements IUserRepository {
     MemoryUserRepository.users.push(user)
   }
 
-  async findAll(): Promise<User[]> {
-    return MemoryUserRepository.users
+  async findAll(): Promise<IUserData[]> {
+    const users = MemoryUserRepository.users
+    const addresses = MemoryAddressRepository.addresses
+
+    return users.map(user => ({ ...user, addresses: addresses.filter(({ idUser }) => idUser === user.id) }))
   }
 
-  async findById(id: string): Promise<User | undefined> {
+  async findById(id: string): Promise<IUserData | undefined> {
     const user = MemoryUserRepository.users.find(user => user.id === id)
+
+    if (user) {
+      const addresses = MemoryAddressRepository.addresses.filter(({ idUser }) => idUser === user.id)
+
+      return { ...user, addresses }
+    }
 
     return user
   }
 
-  async findByEmail(email: string): Promise<User | undefined> {
+  async findByEmail(email: string): Promise<IUserData | undefined> {
     const user = MemoryUserRepository.users.find(user => user.email === email)
+
+    if (user) {
+      const addresses = MemoryAddressRepository.addresses.filter(({ idUser }) => idUser === user.id)
+
+      return { ...user, addresses }
+    }
 
     return user
   }

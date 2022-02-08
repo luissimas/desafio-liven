@@ -1,4 +1,5 @@
 import { User } from '@entities/user'
+import { IUserData } from '@entities/user/user-data'
 
 export type filter = {
   name?: string
@@ -8,9 +9,9 @@ export type filter = {
 
 export interface IUserRepository {
   save(user: User): Promise<void>
-  findAll(filters?: filter): Promise<User[]>
-  findById(id: string): Promise<User | undefined>
-  findByEmail(email: string): Promise<User | undefined>
+  findAll(filters?: filter): Promise<IUserData[]>
+  findById(id: string): Promise<IUserData | undefined>
+  findByEmail(email: string): Promise<IUserData | undefined>
   update(user: User): Promise<void>
   delete(user: User): Promise<void>
 }
