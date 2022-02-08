@@ -10,8 +10,8 @@ import { makeDeleteUserController } from '@factories/user/delete-user'
 import { makeCreateUserValidation } from '@middlewares/validation/user/create-user-validation'
 import { makeListUserValidation } from '@middlewares/validation/user/list-user-validation'
 import { makeGetUserByIdValidation } from '@middlewares/validation/user/get-user-by-id-validation'
-import { makeDeleteUserValidation } from '@middlewares/validation/user/delete-user-validation'
 import { makeUpdateUserValidation } from '@middlewares/validation/user/update-user-validation'
+import { makeDeleteUserValidation } from '@middlewares/validation/user/delete-user-validation'
 
 const router = Router()
 
