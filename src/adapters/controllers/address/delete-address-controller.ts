@@ -1,7 +1,8 @@
+import { IController } from '@controllers/IController'
 import { DeleteAddressUseCase } from '@use-cases/address/delete-address'
 import { NextFunction, Request, Response } from 'express'
 
-export class DeleteAddressController {
+export class DeleteAddressController implements IController {
   constructor(private deleteAddressUseCase: DeleteAddressUseCase) {}
 
   async handle(req: Request, res: Response, next: NextFunction): Promise<Response | void> {

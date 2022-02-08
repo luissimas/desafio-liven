@@ -1,7 +1,8 @@
+import { IController } from '@controllers/IController'
 import { DeleteUserUseCase } from '@use-cases/user/delete-user'
 import { NextFunction, Request, Response } from 'express'
 
-export class DeleteUserController {
+export class DeleteUserController implements IController {
   constructor(private deleUserUseCase: DeleteUserUseCase) {}
 
   async handle(req: Request, res: Response, next: NextFunction): Promise<Response | void> {

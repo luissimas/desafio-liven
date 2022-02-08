@@ -1,7 +1,9 @@
 import { NextFunction, Request, Response } from 'express'
 import { ListUserUseCase } from '@use-cases/user/list-user'
+import { IController } from '@controllers/IController'
+import { filter } from '@utils/object'
 
-export class ListUserController {
+export class ListUserController implements IController {
   constructor(private listUserUseCase: ListUserUseCase) {}
 
   async handle(req: Request, res: Response, next: NextFunction): Promise<Response | void> {
@@ -14,7 +16,7 @@ export class ListUserController {
     }
 
     // Filtering undefined fields from query strings
-    const filters = Object.fromEntries(Object.entries(rawFilters).filter(([_key, value]) => value))
+    const filters = filter(rawFilters)
 
     try {
       const users = await this.listUserUseCase.execute(filters)

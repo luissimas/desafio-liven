@@ -1,7 +1,8 @@
+import { IController } from '@controllers/IController'
 import { CreateAddressUseCase } from '@use-cases/address/create-address'
 import { NextFunction, Request, Response } from 'express'
 
-export class CreateAddressController {
+export class CreateAddressController implements IController {
   constructor(private createAddressUseCase: CreateAddressUseCase) {}
 
   async handle(req: Request, res: Response, next: NextFunction): Promise<Response | void> {
