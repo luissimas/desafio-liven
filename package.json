@@ -6,6 +6,8 @@
   "scripts": {
     "db:create": "knex migrate:latest",
     "db:delete": "knex migrate:rollback",
+    "db:seeds": "knex seed:run",
+    "db:reset": "knex migrate:rollback && knex migrate:latest && knex seed:run",
     "dev": "ts-node-dev --respawn --transpile-only --ignore-watch node_modules -r tsconfig-paths/register src/server.ts",
     "test": "jest"
   },
