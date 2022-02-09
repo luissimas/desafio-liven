@@ -1,32 +1,7 @@
-#+title:Desafio Liven
-#+options: toc:t
+#+title:Treinamento Liven
+#+author: Luís Augusto Simas
 
-* Descrição
-** Enunciado
-#+begin_quote
-Desenvolva uma API simples para cadastro e controle de usuários através de uma API. Deve ser criado um servidor HTTP, que expõe endpoints para acessar as funções internas.
-#+end_quote
-
-** Ferramentas
-De acordo com as indicações do treinamento, estão sendo utilizadas as seguintes ferramentas:
-
-- Git para versionamento de código
-- Yarn para gerenciamento de dependências
-- Mysql como SGBD
-- Express como framework para o servidor HTTP
-- Knex.js como query e schema builder
-- Objection.js como ORM
-
-Além dessas, algumas outras ferramentas extras estão sendo utilizadas para funcionalidades auxiliares:
-
-- Jest como base para definição e execução dos testes
-- Supertest para a execução de testes de integração
-- Bcrypt para criptografia de senhas
-- JOI e Celebrate para validação de requisições
-- Eslint e prettier para linting e formatação
-- uuid para a geração de identificadores únicos
-
-** Especificações
+* Enunciado
 O sistema lida com duas entidades: *usuários* e *endereços*, que mantém um relacionamento do tipo =1:N=, ou seja, um usuário pode ter vários endereços, mas os endereços estão relacionados à apenas um usuário.
 
 As operações requeridas são *CRUDs* para ambas as entidades:
@@ -40,19 +15,103 @@ As operações requeridas são *CRUDs* para ambas as entidades:
 - Alteração de endereços
 - Remoção de endereços
 
-Como especificado, as operações devem ser fornecidas através de um servidor HTTP, portanto optou-se por expor endpoints seguindo os *princípios REST* (embora a API não seja Restful!). Isso envolve o uso semântico dos verbos HTTP e a definição de *endpoints orientados a recursos*, não a operações.
+Como especificado, as operações devem ser fornecidas através de um servidor HTTP, portanto optou-se por expor endpoints seguindo os *princípios REST* (embora a API não seja Restful!). Isso envolve o uso semântico dos verbos HTTP e a definição de *endpoints orientados a recursos*.
 
-Além disso, as rotas de listagem devem permitir a especificação de filtragem e ordenação pelos campos das entidades.
+Além disso, as rotas de listagem devem permitir a especificação de *parâmetros de filtragem* através de querystrings nas rotas.
 
 * Processo de desenvolvimento
-** Rotas
-** Arquitetura
+** Ambiente
+Foram utilizadas as ferramentas descritas no enunciado, com destaque para as seguintes:
 
-#+caption: Fonte: https://thewisedev.com.br/
-[[https://thewisedev.com.br/1a851f5f4c6168cd8b072ca72b4d9fe4.svg]]
+- Typescript
+- Node.js
+- Express
+- Mysql
+- Knex.js ♥️  Objection.js
+
+Além dessas, foram utilizadas algumas outras ferramentas para auxiliar o desenvolvimento ou adicionar funcionalidades extras do sistema.
+
+** Arquitetura
+Buscou-se por implementar o sistema seguindo o padrão da *clean architecture* (porém não aderindo 100% a ele). Isso tem algumas implicações:
+
+- Definição de camadas do sistema e suas responsabilidades.
+- Desacoplamento entre as camadas.
+- Desacoplamento entre regras de negócio e implementações externas.
+
+#+attr_org: :width 800
+[[file:presentation/clean.png]]
 
 ** Testes
-Para o desenvolvimento, foi seguida (até certo ponto) a prática de TDD. Sendo realista, o método foi empregado principalmente na definição das entidades e dos casos de uso, o que ajudou tanto a especificar quanto a validar as funcionalidades essenciais do domínio da aplicação.
+Ao longo do desenvolvimento foram realizados testes unitários usando a biblioteca /Jest/. Os testes foram aplicados principalmente na camada de *domínio* e *casos de uso*, auxiliando tanto na *especificação* quanto na validação das funcionalidades mais importantes da aplicação.
+
+Para *cada entidade e caso de uso* há ao menos um *conjunto de testes* que validam suas funcionalidades.
 
 ** Extras
-** Documentação
+*** Validação de requisições
+Para validar os dados enviados nas requisições à API, foram utilizadas duas bibliotecas:
+
+- *JOI* para a definição e validação de schemas.
+- *Celebrate* para a criação de middlewares de validação.
+
+*** Error handling
+O tratamento de erros é feito de forma *centralizada* na aplicação, fazendo uso da função =next()= do express em conjunto com um /error handler/ customizado implementado como um *middleware*.
+
+**** Definição de erros
+Os erros são definidos na camada de *domínio*, portanto não contém nenhuma informação externa às regras de negócio da aplicação.
+
+#+begin_src typescript
+export abstract class BaseError extends Error {
+  public readonly details?: string
+
+  constructor(message: string, details?: string) {
+    super(message)
+    this.details = details
+  }
+}
+#+end_src
+
+Dessa classe base são derivadas as classes de erro específicas:
+
+#+begin_src typescript
+export class EntityNotFound extends BaseError {
+  constructor(public readonly entity: string, public readonly details?: string) {
+    super(`${entity} not found.`, details)
+  }
+}
+#+end_src
+
+**** Error handler
+O papel do /error handler/ é *identificar os errors* gerados em outras camadas da aplicação, *atribuir* a eles um *status HTTP* e então *enviar uma resposta* com o máximo de informação possível sobre o erro.
+
+#+begin_src typescript
+  type StatusAssoc = {
+    [key: string]: number
+  }
+
+  const httpStatus: StatusAssoc = {
+    UserAlreadyExists: 400,
+    EntityNotFound: 404,
+    InvalidFieldError: 400,
+  }
+
+  export async function handler(error: BaseError, _req: Request, res: Response, _next: NextFunction): Promise<Response> {
+    const { message, details } = error
+    const name = error.constructor.name
+    const status = httpStatus[name] || 500
+
+    if (message) {
+      return res.status(status).json({ error: message, details: details })
+    }
+
+    return res.status(status).json({ 'Internal error': error.message })
+  }
+#+end_src
+
+*** Envio de e-mails
+Foi implementado também o envio de e-mails no momento do *cadastro do usuário*. A implementação atual faz uso da biblioteca /nodemailer/ para o envio dos e-mails.
+
+*** Documentação
+A documentação da API foi feita seguindo os padrões da /OpenAPI Specification/, utilizando a ferramenta /Swagger/ como interface. A documentação é extraída das rotas através de /JSDocs/ pela biblioteca /swagger-jsdoc/ e servida em um endpoint =/docs= através da biblioteca /swagger-ui-express/.
+
+* Fim
+Muito obrigado!
